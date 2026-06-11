@@ -514,6 +514,39 @@
           U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
           U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
+
+  .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Secret content stays completely hidden until password matches */
+        #protectedContent {
+            display: none; 
+            text-align: center;
+            padding: 20px;
+        }
+      
     </style>
   </head>
   <body
@@ -523,6 +556,42 @@
     data-new-gr-c-s-check-loaded="14.1235.0"
     data-gr-ext-installed=""
   >
+
+
+    <div id="passwordGate" class="login-box">
+        <h2>Enter Password to Access</h2>
+        <input type="password" id="userInput" placeholder="Password...">
+        <br>
+        <button onclick="checkPassword()">Unlock Content</button>
+    </div>
+
+    <!-- Step 2: The Hidden Page Content -->
+    <div id="protectedContent">
+        <h1>Welcome! Access Granted.</h1>
+        <p>This is the secret content that was hidden behind the password wall.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            // Change "MySecret123" to whatever password you want to set
+            const presetPassword = "02092000"; 
+            const enteredPassword = document.getElementById("userInput").value;
+
+            if (enteredPassword === presetPassword) {
+                // Hide the login box
+                document.getElementById("passwordGate").style.display = "none";
+                // Show the hidden webpage content
+                document.getElementById("protectedContent").style.display = "block";
+            } else {
+                alert("Incorrect password! Please try again.");
+            }
+        }
+    </script>
+
+</body>
+
+  
+    
     <div class="scrapbook-bg" bis_skin_checked="1"></div>
     <div class="confetti" id="confetti-container" bis_skin_checked="1">
       <div
